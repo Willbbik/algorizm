@@ -5,41 +5,30 @@ import java.io.*;
 import java.util.Scanner;
 
 
-public class Main {					
+public class Main {				
+	
+	static Integer[] dp = new Integer[1000001];
+	
 	public static void main(String[] args) throws IOException {
 
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
-		int cnt = 0;
 		
+		dp[0] = 0;
+		dp[1] = 1;
+		dp[2] = 2;
 		
-		if(n % 5 == 0) {
-			System.out.println(n/5);			
-		}else {
-					
-			while(true) {				
-				
-				if(n < 0) {
-					System.out.println(-1);
-					break;
-				}
-				
-				if(n == 0) {
-					System.out.println(cnt);
-					break;
-				}
-				
-				n -= 2;
-				cnt++;	
-				
-				if(n % 5 == 0) {
-					cnt += n / 5;
-					System.out.println(cnt);
-					break;
-				}		
-			}
-		}
-		
+		System.out.println(cal(n));		
 	}	
+	
+	static int cal(int N) {
+		
+		if(dp[N] == null) {
+			dp[N] = (cal(N-1) + cal(N-2)) % 15746;
+		}
+		return dp[N];
+	}
+	
+	
 }
 
