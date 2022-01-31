@@ -6,29 +6,40 @@ import java.util.Scanner;
 
 
 public class Main {				
-	
-	static Integer[] dp = new Integer[1000001];
+	// baekjoon 2491
+		
+	static int[] arr;
 	
 	public static void main(String[] args) throws IOException {
 
 		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
 		
-		dp[0] = 0;
-		dp[1] = 1;
-		dp[2] = 2;
+		int n = sc.nextInt();	
+		int count = 1;	
+		int count2 = 1;
+		int max = 1;
+		arr = new int[n];
 		
-		System.out.println(cal(n));		
+		// 값 받기
+		for(int i = 0; i < n; i++) {
+			arr[i] = sc.nextInt();
+		}		
+				
+		// 오름차순		
+		for(int i = 0; i<n-1; i++) {
+			if(arr[i] <= arr[i+1]) count++;
+			else count = 1;
+			max = Math.max(max, count);
+		}
+		
+		// 내림차순		
+		for(int i = 0; i<n-1; i++) {
+			if(arr[i] >= arr[i+1]) count2++;
+			else count2 = 1;
+			max = Math.max(max, count2);
+		}
+		
+		System.out.println(max);
 	}	
 	
-	static int cal(int N) {
-		
-		if(dp[N] == null) {
-			dp[N] = (cal(N-1) + cal(N-2)) % 15746;
-		}
-		return dp[N];
-	}
-	
-	
 }
-
