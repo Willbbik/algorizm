@@ -5,38 +5,26 @@ import java.io.InputStreamReader;
 
 public class Main {
 
+	static int[] dp = new int[11];
+	
 	public static void main(String[] args) throws Exception {
 			
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));			
 		int n = Integer.parseInt(br.readLine());
 		
-		System.out.println(cal(n));
-	
-	}
-	
-	static int cal(int num) {
+		dp[1] = 1;
+		dp[2] = 2;
+		dp[3] = 4;
 		
-		int cnt = 0;
+		for(int i = 4; i <= 10; i++) {			
+			dp[i] = dp[i-1] + dp[i-2] + dp[i-3];			
+		}
 		
-		if(num < 100) {
-			return num;
-		}else {
-			cnt = 99;
-			if(num == 1000) {
-				num = 999;
-			}
+		for(int i = 0; i < n; i++) {
 			
-			for(int i = 100; i <= num; i++) {
-				int hun = i / 100;
-				int ten = (i / 10) % 10;
-				int one = i % 10;
-				
-				if((hun - ten) == (ten - one)) {
-					cnt ++;
-				}
-			}					
-		}	
-		return cnt;
-	}
+			int m = Integer.parseInt(br.readLine());
+			System.out.println(dp[m]);			
+		}				
+	}	
 
 }
