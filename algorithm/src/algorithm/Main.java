@@ -5,26 +5,25 @@ import java.io.InputStreamReader;
 
 public class Main {
 
-	static int[] dp = new int[11];
+	static int[] a = new int[46];
+	static int[] b = new int[46];
 	
 	public static void main(String[] args) throws Exception {
 			
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));			
 		int n = Integer.parseInt(br.readLine());
+
+		a[1] = 0;
+		b[1] = 1;
+		a[2] = 1;
+		b[2] = 1;
 		
-		dp[1] = 1;
-		dp[2] = 2;
-		dp[3] = 4;
-		
-		for(int i = 4; i <= 10; i++) {			
-			dp[i] = dp[i-1] + dp[i-2] + dp[i-3];			
+		for(int i = 3; i <= n; i++) {			
+			a[i] = a[i-1] + a[i-2];
+			b[i] = b[i-1] + b[i-2];			
 		}
 		
-		for(int i = 0; i < n; i++) {
-			
-			int m = Integer.parseInt(br.readLine());
-			System.out.println(dp[m]);			
-		}				
+		System.out.println(a[n] + " " + b[n]);
 	}	
 
 }
