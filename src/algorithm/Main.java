@@ -13,9 +13,9 @@ public class Main {
 		for(int i = 0; i < n; i++) {
 			
 			String str = sc.next();
-			if(check(str) == true) {
+			if(check(str)) {
 				cnt ++;
-			}			
+			}
 		}
 		
 		System.out.println(cnt);
@@ -32,7 +32,7 @@ public class Main {
 			
 			if(prev != now) {
 				
-				// 미사용
+				//  미사용
 				if(check[now - 'a'] == false) {
 					check[now - 'a'] = true;
 					prev = now;					
